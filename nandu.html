@@ -1,0 +1,723 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Nandu ❤️</title>
+
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: "Poppins", Arial, sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #ffd6e7, #fff0f6, #e8d9ff);
+    color: #3d2632;
+    overflow-x: hidden;
+}
+
+.heart {
+    position: fixed;
+    bottom: -30px;
+    font-size: 20px;
+    animation: floatUp 7s linear infinite;
+    opacity: 0.7;
+    pointer-events: none;
+    z-index: 0;
+}
+
+@keyframes floatUp {
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0;
+    }
+
+    20% {
+        opacity: 0.8;
+    }
+
+    100% {
+        transform: translateY(-110vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+.screen {
+    display: none;
+    min-height: 100vh;
+    width: 100%;
+    padding: 60px 20px 30px;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+}
+
+.screen.active {
+    display: flex;
+    animation: fadeIn 0.7s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.card {
+    width: min(500px, 95%);
+    background: rgba(255,255,255,0.82);
+    backdrop-filter: blur(15px);
+    border-radius: 30px;
+    padding: 40px 28px;
+    box-shadow: 0 20px 60px rgba(100,50,80,0.15);
+}
+
+.emoji {
+    font-size: 60px;
+    margin-bottom: 15px;
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+    0%,100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-8px);
+    }
+}
+
+h1 {
+    font-size: 34px;
+    margin-bottom: 15px;
+    color: #c73570;
+}
+
+h2 {
+    font-size: 27px;
+    margin-bottom: 18px;
+    color: #b52e68;
+}
+
+h3 {
+    color: #b52e68;
+    margin-bottom: 10px;
+}
+
+p {
+    font-size: 16px;
+    line-height: 1.7;
+    margin-bottom: 20px;
+}
+
+.small {
+    font-size: 13px;
+    opacity: 0.65;
+}
+
+button {
+    border: none;
+    padding: 14px 24px;
+    border-radius: 30px;
+    background: linear-gradient(135deg, #ff5f9e, #d83b78);
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    margin: 7px;
+    box-shadow: 0 8px 20px rgba(216,59,120,0.25);
+    transition: 0.25s;
+}
+
+button:hover {
+    transform: translateY(-3px) scale(1.03);
+}
+
+button:active {
+    transform: scale(0.95);
+}
+
+.progress {
+    position: fixed;
+    top: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 180px;
+    height: 6px;
+    background: rgba(255,255,255,0.6);
+    border-radius: 10px;
+    z-index: 10;
+}
+
+.progress-bar {
+    height: 100%;
+    width: 20%;
+    background: #e84b86;
+    border-radius: 10px;
+    transition: 0.4s;
+}
+
+.option {
+    display: block;
+    width: 90%;
+    margin: 10px auto;
+    background: white;
+    color: #73354f;
+    border: 2px solid #ffd0e1;
+    box-shadow: none;
+}
+
+.option:hover {
+    background: #fff0f6;
+    border-color: #ff7eae;
+}
+
+.memory {
+    background: #fff8fb;
+    padding: 16px;
+    border-radius: 20px;
+    margin: 12px 0;
+    border: 1px solid #ffd6e7;
+}
+
+.memory span {
+    font-size: 28px;
+    display: block;
+    margin-bottom: 5px;
+}
+
+/* SECRET MESSAGE */
+.secret-message {
+    display: none;
+    margin-top: 20px;
+    padding: 20px;
+    border-radius: 20px;
+    background: linear-gradient(135deg, #ffe0ec, #f0ddff);
+    animation: pop 0.6s ease;
+}
+
+@keyframes pop {
+    from {
+        transform: scale(0.7);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.final-heart {
+    font-size: 90px;
+    animation: heartbeat 1.2s infinite;
+}
+
+@keyframes heartbeat {
+    0%,100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.18);
+    }
+}
+
+#noButton {
+    position: relative;
+}
+
+.signature {
+    margin-top: 25px;
+    font-size: 14px;
+    color: #b52e68;
+    font-weight: bold;
+}
+
+@media(max-width:500px) {
+
+    h1 {
+        font-size: 29px;
+    }
+
+    h2 {
+        font-size: 23px;
+    }
+
+    .card {
+        padding: 32px 20px;
+    }
+
+    button {
+        font-size: 14px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- PROGRESS BAR -->
+<div class="progress">
+    <div class="progress-bar" id="progressBar"></div>
+</div>
+
+
+<!-- SCREEN 1 -->
+<section class="screen active" id="screen1">
+
+    <div class="card">
+
+        <div class="emoji">💌</div>
+
+        <h1>Hey Nandu...</h1>
+
+        <p>
+            I made something for you.
+        </p>
+
+        <p class="small">
+            Please don't skip anything 👀
+        </p>
+
+        <button onclick="nextScreen()">
+            Open it ❤️
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- SCREEN 2 -->
+<section class="screen" id="screen2">
+
+    <div class="card">
+
+        <div class="emoji">🥹</div>
+
+        <h2>Okay... let's start</h2>
+
+        <p>
+            Nandu, I don't think I say this enough,
+            but I'm really happy that you're in my life.
+        </p>
+
+        <p>
+            You're someone I can talk to,
+            laugh with,
+            annoy,
+            and make completely random memories with. 😭
+        </p>
+
+        <p>
+            And yes...
+            sometimes I overthink everything 💀
+            but that's just me being me.
+        </p>
+
+        <button onclick="nextScreen()">
+            Continue 👀
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- SCREEN 3 -->
+<section class="screen" id="screen3">
+
+    <div class="card">
+
+        <div class="emoji">🤨</div>
+
+        <h2>Important Question</h2>
+
+        <p>
+            <b>Do you love me?</b>
+        </p>
+
+        <button
+            class="option"
+            onclick="loveAnswer(true)">
+            YES OBVIOUSLY ❤️
+        </button>
+
+        <button
+            class="option"
+            id="noButton"
+            onclick="loveAnswer(false)">
+            NO 😐
+        </button>
+
+        <div id="loveMessage"></div>
+
+    </div>
+
+</section>
+
+
+<!-- SCREEN 4 -->
+<section class="screen" id="screen4">
+
+    <div class="card">
+
+        <div class="emoji">🫶</div>
+
+        <h2>Our Little Things</h2>
+
+        <p>
+            It's not always about huge moments.
+            Sometimes it's the tiny things that mean the most.
+        </p>
+
+        <div class="memory">
+            <span>😂</span>
+            Random conversations that somehow become hours.
+        </div>
+
+        <div class="memory">
+            <span>🥹</span>
+            The moments where we understand each other without saying much.
+        </div>
+
+        <div class="memory">
+            <span>🫂</span>
+            Just being together and doing absolutely nothing.
+        </div>
+
+
+        <!-- THIS BUTTON NOW WORKS -->
+        <button type="button" onclick="showSecret()">
+            One last thing... 👀
+        </button>
+
+
+        <!-- HIDDEN MESSAGE -->
+        <div class="secret-message" id="secretMessage">
+
+            <p>
+                I hope we keep collecting
+                stupid, funny, sweet,
+                and completely random memories together.
+            </p>
+
+            <button type="button" onclick="nextScreen()">
+                Open my final message 💗
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- SCREEN 5 -->
+<section class="screen" id="screen5">
+
+    <div class="card">
+
+        <div class="final-heart">
+            ❤️
+        </div>
+
+        <h1>For You, Nandu</h1>
+
+        <p>
+            I know I can be emotional,
+            dramatic,
+            annoying,
+            and sometimes a professional overthinker 😭
+        </p>
+
+        <p>
+            But underneath all of that,
+            there's someone who genuinely cares
+            about you and loves having you around.
+        </p>
+
+        <p>
+            Thank you for being you.
+            Thank you for understanding me.
+            And thank you for becoming
+            such a special part of my life. 🫶
+        </p>
+
+        <p>
+            Whatever happens,
+            I hope we keep laughing,
+            growing,
+            annoying each other,
+            and making memories.
+        </p>
+
+        <h2>
+            Now come here, idiot. 🫂
+        </h2>
+
+        <div class="signature">
+            — Grace ❤️
+        </div>
+
+        <button onclick="celebrate()">
+            Click this 👀
+        </button>
+
+    </div>
+
+</section>
+
+
+<script>
+
+/* =========================
+   SCREEN NAVIGATION
+========================= */
+
+let currentScreen = 1;
+
+function nextScreen() {
+
+    if (currentScreen < 5) {
+
+        document
+            .getElementById("screen" + currentScreen)
+            .classList.remove("active");
+
+        currentScreen++;
+
+        document
+            .getElementById("screen" + currentScreen)
+            .classList.add("active");
+
+        updateProgress();
+    }
+}
+
+
+/* =========================
+   PROGRESS BAR
+========================= */
+
+function updateProgress() {
+
+    let percentage = (currentScreen / 5) * 100;
+
+    document
+        .getElementById("progressBar")
+        .style.width = percentage + "%";
+}
+
+
+/* =========================
+   LOVE QUESTION
+========================= */
+
+function loveAnswer(answer) {
+
+    const message =
+        document.getElementById("loveMessage");
+
+    if (answer) {
+
+        message.innerHTML = `
+
+            <div class="secret-message"
+                 style="display:block">
+
+                <h3>
+                    Good answer 😌❤️
+                </h3>
+
+                <p>
+                    I knew you would choose correctly.
+                    You may continue, sir. 😂
+                </p>
+
+                <button onclick="nextScreen()">
+                    Continue 🫶
+                </button>
+
+            </div>
+        `;
+
+    } else {
+
+        message.innerHTML = `
+
+            <div class="secret-message"
+                 style="display:block">
+
+                <h3>
+                    EXCUSE ME??? 😭
+                </h3>
+
+                <p>
+                    That option has been removed
+                    from this website.
+                    Please choose the correct answer. 💀
+                </p>
+
+            </div>
+        `;
+
+        moveNoButton();
+    }
+}
+
+
+/* =========================
+   MOVING NO BUTTON
+========================= */
+
+function moveNoButton() {
+
+    const button =
+        document.getElementById("noButton");
+
+    const x = Math.random() * 120 - 60;
+    const y = Math.random() * 80 - 40;
+
+    button.style.transform =
+        `translate(${x}px, ${y}px)`;
+}
+
+
+/* =========================
+   SECRET MESSAGE
+========================= */
+
+function showSecret() {
+
+    const secret =
+        document.getElementById("secretMessage");
+
+    secret.style.display = "block";
+
+    // Scroll down so the message is visible
+    secret.scrollIntoView({
+        behavior: "smooth",
+        block: "center"
+    });
+}
+
+
+/* =========================
+   FINAL CELEBRATION
+========================= */
+
+function celebrate() {
+
+    for (let i = 0; i < 30; i++) {
+
+        const heart =
+            document.createElement("div");
+
+        heart.innerHTML =
+            ["❤️","💗","💖","💕","💘"]
+            [Math.floor(Math.random() * 5)];
+
+        heart.style.position = "fixed";
+        heart.style.left =
+            Math.random() * 100 + "vw";
+
+        heart.style.top = "50vh";
+
+        heart.style.fontSize =
+            (20 + Math.random() * 30) + "px";
+
+        heart.style.zIndex = "999";
+
+        document.body.appendChild(heart);
+
+        heart.animate(
+            [
+                {
+                    transform:
+                        "translateY(0) scale(1)",
+                    opacity: 1
+                },
+
+                {
+                    transform:
+                        `translateY(-${200 + Math.random() * 400}px)
+                         translateX(${Math.random() * 200 - 100}px)
+                         scale(1.5)`,
+
+                    opacity: 0
+                }
+            ],
+
+            {
+                duration: 1800,
+                easing: "ease-out"
+            }
+        );
+
+        setTimeout(() => {
+            heart.remove();
+        }, 1800);
+    }
+
+    setTimeout(() => {
+
+        alert("I LOVE YOU ❤️😭");
+
+    }, 500);
+}
+
+
+/* =========================
+   BACKGROUND HEARTS
+========================= */
+
+function createHeart() {
+
+    const heart =
+        document.createElement("div");
+
+    heart.classList.add("heart");
+
+    heart.innerHTML =
+        ["❤️","💗","💕","💖","💘"]
+        [Math.floor(Math.random() * 5)];
+
+    heart.style.left =
+        Math.random() * 100 + "vw";
+
+    heart.style.animationDuration =
+        (5 + Math.random() * 5) + "s";
+
+    heart.style.fontSize =
+        (15 + Math.random() * 20) + "px";
+
+    document.body.appendChild(heart);
+
+    setTimeout(() => {
+        heart.remove();
+    }, 10000);
+}
+
+setInterval(createHeart, 600);
+
+</script>
+
+</body>
+</html>
+```
